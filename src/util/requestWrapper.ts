@@ -38,12 +38,12 @@ export default class RequestUtil {
       ...requestOptions,
       // FTX requirements
       headers: {
-        'FTX-KEY': key,
+        'FTXUS-KEY': key,
       },
     };
 
     if (typeof this.options.subAccountName === 'string') {
-      this.globalRequestOptions.headers['FTX-SUBACCOUNT'] = this.options.subAccountName;
+      this.globalRequestOptions.headers['FTXUS-SUBACCOUNT'] = this.options.subAccountName;
     }
 
     this.baseUrl = baseUrl;
@@ -92,8 +92,8 @@ export default class RequestUtil {
       }
 
       const { timestamp, sign } = this.getRequestSignature(method, endpoint, this.secret, params);
-      options.headers['FTX-TS'] = String(timestamp);
-      options.headers['FTX-SIGN'] = sign;
+      options.headers['FTXUS-TS'] = String(timestamp);
+      options.headers['FTXUS-SIGN'] = sign;
     }
 
     if (method === 'GET') {
@@ -212,7 +212,7 @@ export default class RequestUtil {
   async getTimeOffset(): Promise<number> {
     const start = Date.now();
     try {
-      const response = await this.get('https://otc.ftx.com/api/time');
+      const response = await this.get('https://otc.ftx.us/api/time');
       const result = new Date(response.result).getTime();
       const end = Date.now();
 

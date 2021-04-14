@@ -73,7 +73,7 @@ export function getRestBaseUrl(restClientOptions: RestClientOptions) {
     return restClientOptions.baseUrl;
   }
 
-  return 'https://ftx.com/api';
+  return 'https://ftx.us/api';
 };
 
 export function isPublicEndpoint (endpoint: string): boolean {
